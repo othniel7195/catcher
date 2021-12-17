@@ -1,0 +1,22 @@
+PODS:
+  - catcher (0.0.1):
+    - Flutter
+  - Flutter (1.0.0)
+
+DEPENDENCIES:
+  - catcher (from `.symlinks/plugins/catcher/ios`)
+  - Flutter (from `Flutter`)
+
+EXTERNAL SOURCES:
+  catcher:
+    :path: ".symlinks/plugins/catcher/ios"
+  Flutter:
+    :path: Flutter
+
+SPEC CHECKSUMS:
+  catcher: 4a6531e66a9939d88f67f4f7b9a20d82fe15c792
+  Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
+
+PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
+
+COCOAPODS: 1.11.2
