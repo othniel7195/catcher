@@ -25,8 +25,8 @@ pubspec.yaml
 dependencies:
 	catcher:
 		git:
-      url: 'git@gitlab.shuinfo.com:shuinfo/app/flutter/catcher.git'
-      ref: '0.1'
+		url: 'git@gitlab.shuinfo.com:shuinfo/app/flutter/catcher.git'
+		ref: '0.1'
 
 ```
 
