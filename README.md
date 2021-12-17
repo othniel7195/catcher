@@ -4,12 +4,32 @@ Catcher Exception Plugin
 
 ## Getting Started
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
+#### Example： 具体使用参考example/main.dart
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```dart
+void main() {
+  CatcherError(
+      runAppFunction: () {
+        runApp(const MyApp());
+      });
+}
+```
 
+
+
+#### Install:
+
+pubspec.yaml
+
+```yaml
+dependencies:
+	catcher:
+		git:
+      url: 'git@gitlab.shuinfo.com:shuinfo/app/flutter/catcher.git'
+      ref: '0.1'
+
+```
+
+​	
+
+​	
