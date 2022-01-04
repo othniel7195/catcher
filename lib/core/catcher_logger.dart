@@ -14,6 +14,7 @@ class CatcherLogger {
   final Logger _logger = Logger("Catcher");
 
   void setup() {
+    hierarchicalLoggingEnabled = true;
     _logger.level = Level.SEVERE;
     _logger.onRecord.listen((rec) {
       var message =
