@@ -14,9 +14,8 @@ class CatcherLogger {
   final Logger _logger = Logger("Catcher");
 
   void setup() {
-    hierarchicalLoggingEnabled = true;
-    _logger.level = Level.SEVERE;
-    _logger.onRecord.listen((rec) {
+    Logger.root.level = Level.SEVERE;
+    Logger.root.onRecord.listen((rec) {
       var message =
           '[${rec.time} | ${rec.loggerName} | ${rec.level.name}] ${rec.message}';
       // ignore: avoid_print
