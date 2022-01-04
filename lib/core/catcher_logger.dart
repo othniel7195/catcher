@@ -11,15 +11,17 @@ import '../catcher.dart';
 
 @immutable
 class CatcherLogger {
-
   final Logger _logger = Logger("Catcher");
 
   void setup() {
-    Logger.root.level = Level.SEVERE;
-    Logger.root.onRecord.listen((rec) {
-      var message = '[${rec.time} | ${rec.loggerName} | ${rec.level.name}] ${rec.message}';
+    _logger.level = Level.SEVERE;
+    _logger.onRecord.listen((rec) {
+      var message =
+          '[${rec.time} | ${rec.loggerName} | ${rec.level.name}] ${rec.message}';
       // ignore: avoid_print
-      print(message,);
+      print(
+        message,
+      );
       Catcher.catcherLog(message);
     });
   }
@@ -27,5 +29,4 @@ class CatcherLogger {
   void error(String message) {
     _logger.severe(message);
   }
-
 }
