@@ -22,7 +22,6 @@ import 'catcher_logger.dart';
 import 'environment_profile_manager.dart';
 
 class CatcherError with ReportAction {
-
   static late CatcherError _instance;
   final Widget? rootWidget;
 
@@ -52,9 +51,9 @@ class CatcherError with ReportAction {
     this.ensureInitialized = false,
     this.customParameters,
   }) : assert(
-  rootWidget != null || runAppFunction != null,
-  "You need to provide rootWidget or runAppFunction",
-  ) {
+          rootWidget != null || runAppFunction != null,
+          "You need to provide rootWidget or runAppFunction",
+        ) {
     _configure();
   }
 
@@ -120,8 +119,8 @@ class CatcherError with ReportAction {
   void _setupReportActionInReportType() {
     _currentConfig.reportType.setReportAction(this);
     _currentConfig.explicitExceptionReportTypesMap.forEach(
-          (error, reportType) {
-            reportType.setReportAction(this);
+      (error, reportType) {
+        reportType.setReportAction(this);
       },
     );
   }
@@ -191,10 +190,10 @@ class CatcherError with ReportAction {
   }
 
   void _reportError(
-      dynamic error,
-      dynamic stackTrace, {
-        FlutterErrorDetails? errorDetails,
-      }) async {
+    dynamic error,
+    dynamic stackTrace, {
+    FlutterErrorDetails? errorDetails,
+  }) async {
     if (errorDetails?.silent == true &&
         _currentConfig.handleSilentError == false) {
       return;
@@ -202,16 +201,8 @@ class CatcherError with ReportAction {
 
     _cleanPastReportsOccurences();
 
-
-
-    final Report report = Report(
-      error,
-      stackTrace,
-      DateTime.now(),
-      errorDetails,
-      _getPlatformType(),
-      customParameters ?? {}
-    );
+    final Report report = Report(error, stackTrace, DateTime.now(),
+        errorDetails, _getPlatformType(), customParameters ?? {});
 
     if (_isReportInReportsOccurencesMap(report)) {
       return;
@@ -223,7 +214,7 @@ class CatcherError with ReportAction {
     }
     _cachedReports.add(report);
     ReportType? reportType =
-    _getReportTypeFromExplicitExceptionReportTypeMap(error);
+        _getReportTypeFromExplicitExceptionReportTypeMap(error);
     reportType ??= _currentConfig.reportType;
     if (!isReportModeSupportedInPlatform(report, reportType)) {
       return;
@@ -232,7 +223,6 @@ class CatcherError with ReportAction {
 
     reportType.requestAction(report, null);
   }
-
 
   bool isReportModeSupportedInPlatform(Report report, ReportType reportType) {
     if (reportType.getSupportedPlatforms().isEmpty) {
@@ -254,8 +244,8 @@ class CatcherError with ReportAction {
   }
 
   ReportHandler? _getReportHandlerFromExplicitExceptionHandlerMap(
-      dynamic error,
-      ) {
+    dynamic error,
+  ) {
     final errorName = error != null ? error.toString().toLowerCase() : "";
     ReportHandler? reportHandler;
     _currentConfig.explicitExceptionHandlersMap.forEach((key, value) {
@@ -270,7 +260,7 @@ class CatcherError with ReportAction {
   @override
   void onActionConfirmed(Report report) {
     final ReportHandler? reportHandler =
-    _getReportHandlerFromExplicitExceptionHandlerMap(report.error);
+        _getReportHandlerFromExplicitExceptionHandlerMap(report.error);
     if (reportHandler != null) {
       _handleReport(report, reportHandler);
       return;
@@ -286,9 +276,7 @@ class CatcherError with ReportAction {
       return;
     }
 
-    reportHandler
-        .handle(report, null)
-        .catchError((dynamic handlerError) {
+    reportHandler.handle(report, null).catchError((dynamic handlerError) {
       _logger.error(
         "Error occurred in ${reportHandler.toString()}: ${handlerError.toString()}",
       );
@@ -307,9 +295,9 @@ class CatcherError with ReportAction {
   }
 
   bool isReportHandlerSupportedInPlatform(
-      Report report,
-      ReportHandler reportHandler,
-      ) {
+    Report report,
+    ReportHandler reportHandler,
+  ) {
     if (reportHandler.getSupportedPlatforms().isEmpty == true) {
       return false;
     }
@@ -346,7 +334,7 @@ class CatcherError with ReportAction {
     final DateTime nowDateTime = DateTime.now();
     _reportsOcurrenceMap.removeWhere((key, value) {
       final DateTime occurenceWithTimeout =
-      key.add(Duration(milliseconds: occurenceTimeout));
+          key.add(Duration(milliseconds: occurenceTimeout));
       return nowDateTime.isAfter(occurenceWithTimeout);
     });
   }

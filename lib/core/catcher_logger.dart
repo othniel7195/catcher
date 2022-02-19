@@ -1,3 +1,12 @@
+/*
+ * @Author: jimmy.zhao
+ * @Date: 2021-12-16 16:31:23
+ * @LastEditTime: 2022-02-18 19:12:13
+ * @LastEditors: jimmy.zhao
+ * @Description: 
+ * 
+ * 
+ */
 //
 //  catcher_logger.dart
 //  catcher
@@ -18,10 +27,6 @@ class CatcherLogger {
     Logger.root.onRecord.listen((rec) {
       var message =
           '[${rec.time} | ${rec.loggerName} | ${rec.level.name}] ${rec.message}';
-      // ignore: avoid_print
-      print(
-        message,
-      );
       Catcher.catcherLog(message);
     });
   }
